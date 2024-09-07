@@ -6,12 +6,12 @@
 	<h1>Todos os Artigos</h1>
     {% for artigo in artigos %}
     
-    <p>{{artigo.title}}</p>
-    <p>{{artigo.data_ano}}
-<!--
-        <a href="{% url 'visualizar_artigo' artigo.id %}">
-            {{ artigo.titulo }} ({{ artigo.data_ano }}) 
-        </a> --> 
+    <p>Título:{{artigo.titulo}}</p>
+    <p>Ano de Publicação: {{artigo.data_ano}} </p>
+    <p>Palavras-chave: {{artigo.palavras_chave}} </p>
+    <a href="{% url 'visualizar_artigo' artigo.id %}">
+        Visualizar PDF 
+    </a> 
     {% endfor %}
 
 

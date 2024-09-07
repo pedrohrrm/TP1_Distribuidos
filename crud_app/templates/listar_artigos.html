@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Artigos{% endblock %}
+
+{% block content %}
+	<h1>Todos os Artigos</h1>
+    {% for artigo in artigos %}
+    
+    <p>{{artigo.title}}</p>
+    <p>{{artigo.data_ano}}
+<!--
+        <a href="{% url 'visualizar_artigo' artigo.id %}">
+            {{ artigo.titulo }} ({{ artigo.data_ano }}) 
+        </a> --> 
+    {% endfor %}
+
+
+{% endblock content %}

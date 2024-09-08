@@ -4,8 +4,13 @@
 
 {% block content %}
 	<h1>Todos os Artigos</h1>
+
+    <a href="{% url 'artigo_create' %}">Criar um artigo</a>
+
     {% for artigo in artigos %}
-    
+    <a href="{% url 'artigo_detalhe' artigo.id %}"> Ver </a>
+    <a href="{% url 'artigo_update' artigo.id %}"> Atualizar </a>
+
     <p>Título:{{artigo.titulo}}</p>
     <p>Ano de Publicação: {{artigo.data_ano}} </p>
     <p>Palavras-chave: {{artigo.palavras_chave}} </p>

@@ -12,3 +12,5 @@ class Artigo(models.Model):
     data_ano = models.IntegerField(blank=False, null=False, default=timezone.now().year)
     revista = models.CharField(max_length=200, blank=False, null=False)
     arquivo = models.FileField(upload_to='uploads/', blank=False)
+    data_ultima_edicao = models.DateTimeField(auto_now=True)
+

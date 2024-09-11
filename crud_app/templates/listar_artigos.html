@@ -1,23 +1,30 @@
 {% extends 'base.html' %}
+{% load static %} 
 
 {% block title %}Lista de Artigos{% endblock %}
 
 {% block content %}
-	<h1>Todos os Artigos</h1>
+<h1>Todos os Artigos</h1>
 
-    <a href="{% url 'artigo_create' %}">Criar um artigo</a>
+<a href="{% url 'artigo_create' %}" class="btn btn-primary mb-3">Criar um artigo</a> 
+<a href="{% url 'buscar_artigo' %}" class="btn btn-secondary mb-3">Localizar um artigo</a> 
 
+<div class="row"> 
     {% for artigo in artigos %}
-    <a href="{% url 'artigo_detalhe' artigo.id %}"> Ver </a>
-    <a href="{% url 'artigo_update' artigo.id %}"> Atualizar </a>
+    <div class="col-md-4 mb-3"> 
+        <div class="card" style="width: 18rem;">
+            <div class="card-body"> 
+                <h5 class="card-title">{{ artigo.titulo }}</h5>
+                <p class="card-text">Ano de Publicação: {{ artigo.data_ano }}</p>
+                <p class="card-text">Palavras-chave: {{ artigo.palavras_chave }}</p>
 
-    <p>Título:{{artigo.titulo}}</p>
-    <p>Ano de Publicação: {{artigo.data_ano}} </p>
-    <p>Palavras-chave: {{artigo.palavras_chave}} </p>
-    <a href="{% url 'visualizar_artigo' artigo.id %}">
-        Visualizar PDF 
-    </a> 
+                <a href="{% url 'artigo_detalhe' artigo.id %}" class="btn btn-secondary">Ver</a>
+                <a href="{% url 'artigo_update' artigo.id %}" class="btn btn-primary">Atualizar</a>
+                <a href="{% url 'visualizar_artigo' artigo.id %}" class="btn btn-info">Visualizar PDF</a> 
+            </div>
+        </div>
+    </div>
     {% endfor %}
-
+</div>
 
 {% endblock content %}

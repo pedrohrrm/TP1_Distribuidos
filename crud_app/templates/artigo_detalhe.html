@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 {% block title %}Detalhes Artigos{% endblock %}
 
-{% block content %} 
+{% block content %}
 
 <h1>Detalhes do Artigo: {{artigo.titulo}} </h1>
 <p> {{artigo.data_ano}} </p>
 <p> {{artigo.resumo}} </p>
-<a href="{{ url_visualizar }}">Visualizar PDF</a>     
-<a href="{% url 'artigo_update' artigo.id %}"> Atualizar </a>
-<a href="{% url 'artigo_delete' artigo.id %} ">Apagar</a>
+{% if artigo.data_ultima_edicao %}
+<p>Última edição: {{ artigo.data_ultima_edicao }}</p>
+{% endif %}
+
+<a class="btn btn-info" href="{{ url_visualizar }}">Visualizar PDF</a>
+<a class="btn btn-primary" href="{% url 'artigo_update' artigo.id %}"> Atualizar </a>
+<a class="btn btn-warning" href="{% url 'artigo_delete' artigo.id %} ">Apagar</a>
 
 {% endblock content %}

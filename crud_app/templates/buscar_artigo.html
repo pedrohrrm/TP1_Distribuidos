@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Resultados da Busca{% endblock %}
+
+{% block content %}
+<h2>Resultados da Busca</h2>
+
+<form method="get" action="{% url 'buscar_artigo' %}" class="mb-5"> 
+    <label for="campo">Buscar por:</label>
+    <select name="campo" id="campo">
+        <option value="">Todos os campos</option>
+        <option value="titulo">Título</option>
+        <option value="autores">Autores</option>
+        <option value="palavras_chave">Palavras-chave</option>
+        <option value="revista">Revista</option>
+    </select>
+
+    <input type="text" name="q" placeholder="Termo de busca">
+
+    <label for="ano">Ano de Publicação (opcional):</label>
+    <input type="number" name="ano" id="ano">
+
+    <button class="btn btn-primary" type="submit">Buscar</button>
+</form>
+
+{% if artigos %}
+    <div class="row"> 
+        {% for artigo in artigos %}
+        <div class="col-md-4 mb-3"> 
+            <div class="card" style="width: 18rem;">
+                <div class="card-body"> 
+                    <h5 class="card-title">{{ artigo.titulo }}</h5>
+                    <p class="card-text">Ano de Publicação: {{ artigo.data_ano }}</p>
+                    <p class="card-text">Palavras-chave: {{ artigo.palavras_chave }}</p>
+
+                    <a href="{% url 'artigo_detalhe' artigo.id %}" class="btn btn-secondary">Ver</a>
+                    <a href="{% url 'artigo_update' artigo.id %}" class="btn btn-primary">Atualizar</a>
+                    <a href="{% url 'visualizar_artigo' artigo.id %}" class="btn btn-info">Visualizar PDF</a> 
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Nenhum artigo encontrado.</p>
+{% endif %}
+
+{% endblock content %}
